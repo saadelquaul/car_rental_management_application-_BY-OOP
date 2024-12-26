@@ -11,7 +11,7 @@
                 </ul>
                 <div class="user">
                     <a href="login.php"><i class="fa-solid fa-user login"></i>Login</a>
-                    <a href="signup.php"><i class="fa-solid fa-user-plus sign-up"></i>Sign up</a>
+                    <a href="register.php"><i class="fa-solid fa-user-plus sign-up"></i>Sign up</a>
                 </div>
             </div>
         </nav>
