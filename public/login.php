@@ -1,6 +1,4 @@
 <?php
-include('config.php');
-
 
 ?>
 
@@ -14,8 +12,7 @@ include('config.php');
     <link rel="stylesheet" href="main.css">
     <link rel="shortcut icon" href="srcs/imgs/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title><?php echo "Car Rental" ?></title>
-    
+    <title><?php "Car Rental |" . 'Sign in' ?></title>
 </head>
 
 <body>
@@ -38,17 +35,18 @@ include('config.php');
         </nav>
     </header>
     <main>
-        <section>
-            <div class="hero-section">
-
-                <div class="info">
-                    <h1>Welcome to a Car Rental Management</h1>
-                    <p>Manage your Rentals Contracts Easly.</p> 
-                    <a href="login.php" class="btn">Manage Now!</a>
-                </div>
-                <div>
-                    <img src="srcs/imgs/Hyundai_Tucson.png" alt="Hero image">
-                </div>
+        <section class="login-section">
+            <div class="loginUser">
+                <h2>Login</h2>
+                <form action="login.php" method="post">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    <input type="submit" value="Login">
+                </form>
+                <p>Don't have an account? <a href="signup.php">Sign up</a></p>
+            </div>
             </div>
         </section>
     </main>
