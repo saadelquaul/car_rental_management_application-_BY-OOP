@@ -22,6 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
         // Store token in session
         $_SESSION['user_id'] = $user['id'];
+        $_SESSION['role'] = $user['role'];
         
         $_SESSION['token'] = $token;
 
@@ -69,6 +70,11 @@ $pdo = null;
                     <input type="password" id="password" name="password" required>
                     <input type="submit" value="Login">
                 </form>
+                <?php
+                if(isset($error)): ?>
+                <p  class="error"><?php echo $error; ?></p>
+                <?php endif;
+                ?>
                 <p>Don't have an account? <a href="signup.php">Sign up</a></p>
             </div>
             </div>

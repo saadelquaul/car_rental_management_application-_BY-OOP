@@ -1,6 +1,6 @@
 <?php
 
-
+session_start();
 ?>
 
 
@@ -25,9 +25,14 @@
         <section>
             <div class="hero-section">
                 <div class="info">
-                    <h1>Welcome to a Car Rental Management</h1>
-                    <p>Manage your Rentals Contracts Easly.</p> 
-                    <a href="login.php" class="btn">Manage Now!</a>
+                    <h1>Welcome to a Car Rental</h1>
+                    <p>Our company offers a wide range of cars for rent, from economy to luxury models. We have a car for every budget and need. Our cars are well-maintained and reliable, so you can enjoy your trip without any worries. Book your car today and start exploring the world!</p>
+                    <?php   if(isset($_SESSION['user_id'])){
+                    echo '<a href="car_listings.php" class="btn">Rent Now!</a>';
+
+                   } else {
+                    echo '<a href="signup.php" class="btn">Rent Now!</a>';
+                   }  ?>
                 </div>
                 <div>
                     <img src="../assets/imges/Hyundai_Tucson.png" alt="Hero image">

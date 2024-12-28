@@ -5,6 +5,27 @@
 // Fetch all users and their reservations
 // $users = UserManager::getAllUsers();
 // $reservations = ReservationManager::getAllReservations();
+
+
+session_start();
+if (isset($_SESSION['role'])) {
+    
+    if ($_SESSION['role'] !== 'admin') {
+        
+        header('Location: car_listings.php');
+    }
+    
+} else {
+    header('Location: index.php');
+    exit();
+}
+
+
+
+
+
+
+
 ?>
 
 <!DOCTYPE html>

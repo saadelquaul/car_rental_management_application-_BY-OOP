@@ -5,6 +5,7 @@ require_once "../config/db.php"; // Include database connection
 require_once "../classes/classUser.php"; // Include User class
 require_once "../classes/classClient.php"; // Include Client class
 
+session_start();
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Retrieve POST data
     $name = trim($_POST["name"]);
