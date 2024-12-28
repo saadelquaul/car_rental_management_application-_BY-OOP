@@ -583,4 +583,120 @@ display: none;
     height: 350px;
     
  }
+.card {
+    display: flex;
+    flex-direction: column;
+    background-color:gainsboro;
+    width: 300px;
+    height: 320px;
+    border-radius: 10px;
+    & .blog-img {
+        width: 100%;
+        height: 200px;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+    }
+    & .card-body {
+        padding: 20px;
+        & h3 > a {
+            color: #1F4064;
+            text-decoration: none;
+            &:hover {
+                color: #22700c;
+            }
+        }
+        & h6 {
+            color: rgb(0, 0, 0);
+            margin-bottom: 2px;
+            font-size: 12px;
+            & span {
+                color: gray;
+            }
+        }
+        & > a {
+            display: flex;
+            background-color: #1F4064;
+            place-self: end;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            text-decoration: none;
+            &:hover {
+                background-color: #22700c;
+            }
+    
+    }
+}
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    
+    label {
+        font-size: 16px;
+        color: gray;
+    }
+    select {
+
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        outline: none;
+        background-color: #1F4064;
+        color: white;        
+        &:focus {
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+        }
+    }
+    
+
+}
+.filter{
+    border-right: 2px solid #1F4064;
+    padding: 20px;
+    &  button {
+    padding: 5px 10px;
+    display: flex;
+    place-self: center;
+    border: none;
+    border-radius: 4px;
+    background-color: #4cc52b;
+    color: white;
+    font-size: medium;
+    cursor: pointer;
+    
+    &:hover {
+        background-color: #1F4064;
+        color: white;
+        transition: background-color 0.3s ease-in-out;
+    }
+}
+}
+
+
+.car-listing-main {
+    display: flex;
+    padding: 50px 20px;
+    & .filter-section {
+        width: 160px;
+    }
+    height: 100%;
+
+}
+.car-listing {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+
+
+}
 
