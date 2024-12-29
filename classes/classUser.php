@@ -1,5 +1,5 @@
 <?php
-// Include database connection
+require_once "../config/db.php"; // Include database connection
 class User {
     protected $id;
     protected $email;

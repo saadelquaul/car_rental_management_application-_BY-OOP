@@ -1,5 +1,5 @@
 <?php 
-
+require_once "../config/db.php"; 
 session_start();
 
 
@@ -8,6 +8,18 @@ if (!isset($_SESSION['user_id'])) {
    
 }
 
+
+require_once '../classes/classCar.php';
+
+// $car = new Car();
+
+$cars = Car::getAllCars($pdo);
+
+// Check if there are no cars available 
+if (empty($cars)) {
+    echo '<p>No cars available</p>';
+    exit();
+}
 
 
 ?>
@@ -27,6 +39,7 @@ if (!isset($_SESSION['user_id'])) {
     <?php include '../includes/header.php' ?>
 
     <main class="car-listing-main">
+        
         <section class="filter-section">
             <div class="filter">
                 <h2>Filter Cars</h2>
@@ -66,9 +79,34 @@ if (!isset($_SESSION['user_id'])) {
                 </form>
             </div>
         </section>
+        <div style="width: 100%;">
+            <?php if ($_SESSION['role'] === 'admin') {
+                echo ' <div><button type="button" class="addCarBtn" id="addCarBtn">Add Car</button></div>';
+            }
+            
+           
+            ?>
+       
         <section class="car-listing">
+
+        <?php foreach ($cars as $car) { ?>
             <div class="card">
                 <div class="blog-img">
+                    <a href="">
+                        <img src="../assets/imges/car-list-1.jpg" class="img-fluid" alt="<?php echo $car['brand']; ?>">
+                    </a>
+                    <div class="card-body">
+                        <h3><a href="listing-details.php?id=<?php echo $car['registration_number']; ?>"><?php echo $car['model']; ?></a></h3>
+                        <h6>Brand : <span><?php echo $car['brand']; ?></span></h6>
+                        <h6>$<?php echo $car['price']; ?><span>/ Day</span></h6>
+                        <a href="listing-details.php?id=<?php echo $car['registration_number']; ?>" class="Rentbtn"><span><i class="feather-calendar me-2"></i></span>Rent Now</a>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+
+            <div class="card">
+            <div class="blog-img">
                     <a href="">
                         <img src="../assets/imges/car-list-1.jpg" class="img-fluid" alt="Toyota">
                     </a>
@@ -81,124 +119,21 @@ if (!isset($_SESSION['user_id'])) {
 
                 </div>
             </div>
-            <div class="card">
-                <div class="blog-img">
-                    <a href="">
-                        <img src="../assets/imges/car-list-1.jpg" class="img-fluid" alt="Toyota">
-                    </a>
-                    <div class="card-body">
-                        <h3><a href="listing-details.html">Ferrari 458 MM Special</a></h3>
-                        <h6>Category : <span>Ferrarai</span></h6>
-                        <h6>$160<span>/ Day</span></h6>
-                        <a href="listing-details.html" class="Rentbtn"><span><i class="feather-calendar me-2"></i></span>Rent Now</a>
-                    </div>
+         
 
-                </div>
-            </div>
-            <div class="card">
-                <div class="blog-img">
-                    <a href="">
-                        <img src="../assets/imges/car-list-1.jpg" class="img-fluid" alt="Toyota">
-                    </a>
-                    <div class="card-body">
-                        <h3><a href="listing-details.html">Ferrari 458 MM Special</a></h3>
-                        <h6>Category : <span>Ferrarai</span></h6>
-                        <h6>$160<span>/ Day</span></h6>
-                        <a href="listing-details.html" class="Rentbtn"><span><i class="feather-calendar me-2"></i></span>Rent Now</a>
-                    </div>
 
-                </div>
-            </div>
-            <div class="card">
-                <div class="blog-img">
-                    <a href="">
-                        <img src="../assets/imges/car-list-1.jpg" class="img-fluid" alt="Toyota">
-                    </a>
-                    <div class="card-body">
-                        <h3><a href="listing-details.html">Ferrari 458 MM Special</a></h3>
-                        <h6>Category : <span>Ferrarai</span></h6>
-                        <h6>$160<span>/ Day</span></h6>
-                        <a href="listing-details.html" class="Rentbtn"><span><i class="feather-calendar me-2"></i></span>Rent Now</a>
-                    </div>
 
-                </div>
-            </div>
-            <div class="card">
-                <div class="blog-img">
-                    <a href="">
-                        <img src="../assets/imges/car-list-1.jpg" class="img-fluid" alt="Toyota">
-                    </a>
-                    <div class="card-body">
-                        <h3><a href="listing-details.html">Ferrari 458 MM Special</a></h3>
-                        <h6>Category : <span>Ferrarai</span></h6>
-                        <h6>$160<span>/ Day</span></h6>
-                        <a href="listing-details.html" class="Rentbtn"><span><i class="feather-calendar me-2"></i></span>Rent Now</a>
-                    </div>
+ 
 
-                </div>
-            </div>
-            <div class="card">
-                <div class="blog-img">
-                    <a href="">
-                        <img src="../assets/imges/car-list-1.jpg" class="img-fluid" alt="Toyota">
-                    </a>
-                    <div class="card-body">
-                        <h3><a href="listing-details.html">Ferrari 458 MM Special</a></h3>
-                        <h6>Category : <span>Ferrarai</span></h6>
-                        <h6>$160<span>/ Day</span></h6>
-                        <a href="listing-details.html" class="Rentbtn"><span><i class="feather-calendar me-2"></i></span>Rent Now</a>
-                    </div>
 
-                </div>
-            </div>
-            <div class="card">
-                <div class="blog-img">
-                    <a href="">
-                        <img src="../assets/imges/car-list-1.jpg" class="img-fluid" alt="Toyota">
-                    </a>
-                    <div class="card-body">
-                        <h3><a href="listing-details.html">Ferrari 458 MM Special</a></h3>
-                        <h6>Category : <span>Ferrarai</span></h6>
-                        <h6>$160<span>/ Day</span></h6>
-                        <a href="listing-details.html" class="Rentbtn"><span><i class="feather-calendar me-2"></i></span>Rent Now</a>
-                    </div>
-
-                </div>
-            </div>
-            <div class="card">
-                <div class="blog-img">
-                    <a href="">
-                        <img src="../assets/imges/car-list-1.jpg" class="img-fluid" alt="Toyota">
-                    </a>
-                    <div class="card-body">
-                        <h3><a href="listing-details.html">Ferrari 458 MM Special</a></h3>
-                        <h6>Category : <span>Ferrarai</span></h6>
-                        <h6>$160<span>/ Day</span></h6>
-                        <a href="listing-details.html" class="Rentbtn"><span><i class="feather-calendar me-2"></i></span>Rent Now</a>
-                    </div>
-
-                </div>
-            </div>
-            <div class="card">
-                <div class="blog-img">
-                    <a href="">
-                        <img src="../assets/imges/car-list-1.jpg" class="img-fluid" alt="Toyota">
-                    </a>
-                    <div class="card-body">
-                        <h3><a href="listing-details.html">Ferrari 458 MM Special</a></h3>
-                        <h6>Category : <span>Ferrarai</span></h6>
-                        <h6>$160<span>/ Day</span></h6>
-                        <a href="listing-details.html" class="Rentbtn"><span><i class="feather-calendar me-2"></i></span>Rent Now</a>
-                    </div>
-
-                </div>
-            </div>
         </section>
+        </div>
 
     </main>
 
 
     <?php include '../includes/footer.php' ?>
+    <script src="../assets/js/script.js"></script>
 </body>
 
 </html>
