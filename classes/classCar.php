@@ -74,5 +74,25 @@ class Car {
         $stmt->bindParam(':registrationNumber', $registrationNumber);
         return $stmt->execute();
     }
-}
+    public static function addCarToDatabase($pdo, $car) {
+
+        $stmt = $pdo->prepare("INSERT INTO cars (registration_number, brand, model, year, price) VALUES (?, ?, ?, ?, ?)");
+
+        $stmt->execute([
+
+            $car->registrationNumber,
+
+            $car->brand,
+
+            $car->model,
+
+            $car->year,
+
+            $car->price
+
+        ]);
+
+    }
+    }
+
 ?>

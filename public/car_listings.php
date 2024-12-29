@@ -39,6 +39,7 @@ if (empty($cars)) {
     <?php include '../includes/header.php' ?>
 
     <main class="car-listing-main">
+   
         
         <section class="filter-section">
             <div class="filter">
@@ -82,10 +83,59 @@ if (empty($cars)) {
         <div style="width: 100%;">
             <?php if ($_SESSION['role'] === 'admin') {
                 echo ' <div><button type="button" class="addCarBtn" id="addCarBtn">Add Car</button></div>';
-            }
+           }
             
-           
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $registrationNumber = $_POST['registrationNumber'];
+                $brand = $_POST['brand'];
+                $model = $_POST['model'];
+                $year = $_POST['year'];
+                $price = $_POST['price'];
+                $errors = [];
+
+                if (empty($registrationNumber) || empty($brand) || empty($model) || empty($year) || empty($price)) {
+                    $errors[] = "All fields are required.";
+                }
+
+                if (!is_numeric($year) || $year < 1886 || $year > date("Y")) {
+                    $errors[] = "Invalid year.";
+                }
+
+                if (!is_numeric($price) || $price < 0) {
+                    $errors[] = "Invalid price.";
+                }
+
+                if (!empty($errors)) {
+                    foreach ($errors as $error) {
+                        echo "<p>$error</p>";
+                    }
+                    exit();
+                }
+                $carP = new Car($registrationNumber, $brand, $model, $year, $price);
+                Car::addCarToDatabase($pdo, $carP);
+                
+
+                header('Location: car_listings.php');
+                
+            }
+
+        
             ?>
+             <div class="addCar" >
+                    <form method="post" action="car_listings.php" id="addCar">
+                        <?php if (isset($error)): ?>
+                            <p style="color: red;"><?php echo $error; ?></p>
+                        <?php endif; ?>
+                        <h2>Add a New Car</h2>
+                        <input type="text" id="registrationNumber" name="registrationNumber" placeholder="Registration Number">
+                        <input type="text" id="brand" name="brand" placeholder="Brand">
+                        <input type="text" id="model" name="model" placeholder="Model">
+                        <input type="text" id="year" name="year" placeholder="Year">
+                        <input type="text" id="price" name="price" placeholder="Price">
+                        <button type="submit" >  Add Car</button>
+
+                    </form>
+                </div>
        
         <section class="car-listing">
 
@@ -105,20 +155,7 @@ if (empty($cars)) {
             </div>
         <?php } ?>
 
-            <div class="card">
-            <div class="blog-img">
-                    <a href="">
-                        <img src="../assets/imges/car-list-1.jpg" class="img-fluid" alt="Toyota">
-                    </a>
-                    <div class="card-body">
-                        <h3><a href="listing-details.html">Ferrari 458 MM Special</a></h3>
-                        <h6>Category : <span>Ferrarai</span></h6>
-                        <h6>$160<span>/ Day</span></h6>
-                        <a href="listing-details.html" class="Rentbtn"><span><i class="feather-calendar me-2"></i></span>Rent Now</a>
-                    </div>
-
-                </div>
-            </div>
+            
          
 
 

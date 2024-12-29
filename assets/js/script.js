@@ -40,25 +40,8 @@
 //     addCar.style.display = 'none';
 // });
 const btnAddCar = document.querySelector('#addCarBtn');
-const bodyofform = document.querySelector('.car-listing-main');
-btnAddCar.addEventListener('click', ()=>{
-
-    document.querySelector('.car-listing').innerHTML = `<div class="addCar">
-                    <form method="post" action="manage.php" id="addCar">
-                        <?php if (isset($error)): ?>
-                            <p style="color: red;"><?php echo $error; ?></p>
-                        <?php endif; ?>
-                        <h2>Add a New Car</h2>
-                        <input type="text" id="registrationNumber" name="registrationNumber" placeholder="Registration Number">
-                        <input type="text" id="brand" name="brand" placeholder="Brand">
-                        <input type="text" id="model" name="model" placeholder="Model">
-                        <input type="text" id="year" name="year" placeholder="Year">
-                        <input type="text" id="price" name="price" placeholder="Price">
-                        <input type="submit" value="Add Car">
-
-                    </form>
-                </div>`;
-
-
-
-} )
+const bodyofform = document.querySelector('.addCar');
+btnAddCar.addEventListener('click', () => {
+    bodyofform.style.display = bodyofform.style.display === 'flex' ? 'none' : 'flex';
+   
+});
